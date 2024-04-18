@@ -24,12 +24,12 @@ To do so, you will first have to open a terminal and follow the steps below. I p
 
 - Step 1:
 
-    You will to clone this repository:
+    You will have to clone this repository:
 
       git clone https://github.com/Segnaly-2021/image_classification_project.git
 - Step 2:
   
-    The first step is to build the image. One of the simplest ways to do so is to pull the already image living on docker Hub.
+    The second step is to build the image. One of the simplest ways to do so is to pull the already-existing image living on docker Hub.
     Copy and paste the following line to your terminal:
 
       docker pull alysegnane/im-classif:modif-ver-resnet
