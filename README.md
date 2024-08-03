@@ -12,11 +12,11 @@ I agree with you, but the goal of this project was to build a relatively simple 
 That being said, once the model is built I save it using keras and then develop the webserver application using FastAPI as mentioned earlier(see ./app).
 This app deploys the model, which means making it available to the end users. Therfore, It provides an interface between the model and the users. 
 In our case, it requires users to provide an image of shape of (28, 28, 1), it processes it and rescales it so that its pixels range from
-0 to 1 and then gives it to the model as input. The model makes its prediction and returns the **handwriten digit** in the provided image 
-as well as the level of confidence. The app takes all of those information and gets them back to the users.
+0 to 1 and then passes it to the model as input. The model makes its prediction and returns the **handwriten digit** in the provided image 
+along with the level of confidence. The app takes all of those pieces of information and gets them back to the users.
 
 Finally to make sure this works everywhere, I *dockerize* the app, meaning putting the app and all of its dependencies inside a container.
-To do that I created a Dockerfile (see ./Dockerfile) to build a docker image which is living at this time in my docker Hub repository.
+To do that I created a compose file (see ./compose.yaml and ./Dockerfile) to build a docker image which is living at this time in my docker Hub repository.
 
 Enough talking!!! Let's try it out:
 
@@ -24,25 +24,25 @@ To do so, you will first have to open a terminal and follow the steps below. I p
 
 - Step 1:
 
-    You will have to clone this repository:
+    You will have to clone this repository and navigate through it :
 
       git clone https://github.com/Segnaly-2021/image_classification_project.git
+      cd ./image_classification_project
 - Step 2:
   
-    The second step is to build the image. One of the simplest ways to do so is to pull the already-existing image living on docker Hub.
-    Copy and paste the following line to your terminal:
+    The second step is to build the image. Copy and paste the following line to your terminal:
 
-      docker pull alysegnane/im-classif:modif-ver-resnet
+      docker-compose build
 - Step 3:
 
-    Once the image is downloaded, you can run a container out of it. the line below shows how to do that. Copy and paste into your terminal:
+    Once the image is built, you can run a container out of it. the line below shows how to do that. Copy and paste into your terminal:
   
-      docker run --rm -p 8080:8080 alysegnane/im-classif:modif-ver-resnet
+      docker-compose up
 
 - Step 4:
 
     The server should now be running on your terminal. Leave it there, don't quit the terminal and open your web browser.
-    One the most interesting FastAPI features is that it provides a graphical user interface documentation. To visit the one related to our app,
+    One the most interesting features of FastAPI is that it provides a graphical user interface documentation. To visit the one related to our app,
     go visit:
   
       http://localhost:8080/docs
